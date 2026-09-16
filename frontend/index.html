@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Future Interns CRM</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">F</div>
+            <div>
+                <h2>Future CRM</h2>
+                <p>Lead Management</p>
+            </div>
+        </div>
+
+        <nav>
+            <button class="nav-item active" onclick="showDashboard()">
+                🏠 Dashboard
+            </button>
+
+            <button class="nav-item" onclick="showAddLead()">
+                ➕ Add Lead
+            </button>
+
+            <button class="nav-item" onclick="showLeads()">
+                👥 All Leads
+            </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <p>Future Interns</p>
+            <small>Task 2 • Mini CRM</small>
+        </div>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Header -->
+        <header class="topbar">
+
+            <div>
+                <h1 id="pageTitle">Dashboard</h1>
+                <p id="pageSubtitle">
+                    Manage your leads and follow-ups
+                </p>
+            </div>
+
+            <button class="add-btn" onclick="showAddLead()">
+                + Add New Lead
+            </button>
+
+        </header>
+
+
+        <!-- Dashboard -->
+        <section id="dashboardSection">
+
+            <!-- Statistics -->
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon total">👥</div>
+                    <div>
+                        <p>Total Leads</p>
+                        <h2 id="totalLeads">0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon new">🆕</div>
+                    <div>
+                        <p>New Leads</p>
+                        <h2 id="newLeads">0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon contacted">📞</div>
+                    <div>
+                        <p>Contacted</p>
+                        <h2 id="contactedLeads">0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon converted">✓</div>
+                    <div>
+                        <p>Converted</p>
+                        <h2 id="convertedLeads">0</h2>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- Recent Leads -->
+            <div class="content-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h2>Recent Leads</h2>
+                        <p>Your latest leads</p>
+                    </div>
+
+                    <button class="text-btn" onclick="showLeads()">
+                        View All →
+                    </button>
+
+                </div>
+
+                <div id="recentLeadsContainer">
+
+                    <div class="empty-state">
+                        <div>👥</div>
+                        <h3>No leads yet</h3>
+                        <p>Add your first lead to get started.</p>
+
+                        <button onclick="showAddLead()">
+                            Add Lead
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Add Lead Section -->
+        <section id="addLeadSection" class="hidden">
+
+            <div class="form-card">
+
+                <div class="form-header">
+                    <h2>Add New Lead</h2>
+                    <p>Add a new customer or business lead.</p>
+                </div>
+
+                <form id="leadForm">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+
+                            <input
+                                type="text"
+                                id="name"
+                                placeholder="Enter full name"
+                                required
+                            >
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="Enter email address"
+                                required
+                            >
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="source">Lead Source *</label>
+
+                            <select id="source" required>
+
+                                <option value="">
+                                    Select source
+                                </option>
+
+                                <option value="Website">
+                                    Website
+                                </option>
+
+                                <option value="LinkedIn">
+                                    LinkedIn
+                                </option>
+
+                                <option value="Instagram">
+                                    Instagram
+                                </option>
+
+                                <option value="Referral">
+                                    Referral
+                                </option>
+
+                                <option value="Email">
+                                    Email
+                                </option>
+
+                                <option value="Other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="status">
+                                Status
+                            </label>
+
+                            <select id="status">
+
+                                <option value="New">
+                                    New
+                                </option>
+
+                                <option value="Contacted">
+                                    Contacted
+                                </option>
+
+                                <option value="Converted">
+                                    Converted
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group full-width">
+
+                            <label for="followUpDate">
+                                Follow-up Date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="followUpDate"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group full-width">
+
+                            <label for="notes">
+                                Notes
+                            </label>
+
+                            <textarea
+                                id="notes"
+                                rows="5"
+                                placeholder="Add notes or follow-up information..."
+                            ></textarea>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="button"
+                            class="cancel-btn"
+                            onclick="showDashboard()"
+                        >
+                            Cancel
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="save-btn"
+                        >
+                            Save Lead
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+        <!-- All Leads Section -->
+        <section id="leadsSection" class="hidden">
+
+            <div class="content-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h2>All Leads</h2>
+                        <p>Manage all your customer leads.</p>
+                    </div>
+
+                    <button
+                        class="add-btn"
+                        onclick="showAddLead()"
+                    >
+                        + Add Lead
+                    </button>
+
+                </div>
+
+
+                <!-- Search -->
+                <div class="search-box">
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="🔍 Search leads by name or email..."
+                        oninput="searchLeads()"
+                    >
+
+                </div>
+
+
+                <!-- Table -->
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Name</th>
+
+                                <th>Email</th>
+
+                                <th>Source</th>
+
+                                <th>Status</th>
+
+                                <th>Follow-up</th>
+
+                                <th>Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="leadsTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Edit Lead Modal -->
+    <div id="editModal" class="modal hidden">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <div>
+                    <h2>Edit Lead</h2>
+                    <p>Update lead information</p>
+                </div>
+
+                <button
+                    class="close-btn"
+                    onclick="closeEditModal()"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="editLeadForm">
+
+                <input type="hidden" id="editId">
+
+
+                <div class="form-group">
+
+                    <label for="editName">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editName"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editEmail">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="editEmail"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editSource">
+                        Source
+                    </label>
+
+                    <select id="editSource">
+
+                        <option value="Website">Website</option>
+                        <option value="LinkedIn">LinkedIn</option>
+                        <option value="Instagram">Instagram</option>
+                        <option value="Referral">Referral</option>
+                        <option value="Email">Email</option>
+                        <option value="Other">Other</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editStatus">
+                        Status
+                    </label>
+
+                    <select id="editStatus">
+
+                        <option value="New">
+                            New
+                        </option>
+
+                        <option value="Contacted">
+                            Contacted
+                        </option>
+
+                        <option value="Converted">
+                            Converted
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editFollowUp">
+                        Follow-up Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="editFollowUp"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editNotes">
+                        Notes
+                    </label>
+
+                    <textarea
+                        id="editNotes"
+                        rows="4"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        onclick="closeEditModal()"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="save-btn"
+                    >
+                        Update Lead
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
